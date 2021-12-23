@@ -13,11 +13,9 @@ import android.view.View;
 
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.Button;
 
 public class MainActivity extends AppCompatActivity {
 
-    private Button donateButton;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,11 +31,6 @@ public class MainActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
-        donateButton = (Button) findViewById(R.id.donateButton);
-        if (donateButton != null)
-        {
-            Log.v("Donate", "Really got the donate button");
-        }
     }
 
     @Override
@@ -61,4 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+    public void onDonate (View view)
+    {
+        Log.v("Donate", "Really got the donate button");
+    }
+
 }
