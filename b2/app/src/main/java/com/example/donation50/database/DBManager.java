@@ -1,13 +1,14 @@
-package com.example.donation40.database;
+package com.example.donation50.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
-import com.example.donation40.activities.Base;
-import com.example.donation40.models.Donation;
+import com.example.donation50.activities.Base;
+import com.example.donation50.models.Donation;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,17 +25,19 @@ public class DBManager {
 	}
 
 	public void open() throws SQLException {
+		Log.v("Donate", "Database Open");
 		database = dbHelper.getWritableDatabase();
 	}
 
 	public void close() {
+		Log.v("Donate", "Database Closed");
 		database.close();
 	}
 
 	public void add(Donation d) {
 		ContentValues values = new ContentValues();
 		values.put("amount", d.amount);
-		values.put("method", d.method);
+		values.put("method", d.paymenttype);
 
 		database.insert("donations", null, values);
 	}
@@ -54,9 +57,9 @@ public class DBManager {
 
 	private Donation toDonation(Cursor cursor) {
 		Donation pojo = new Donation();
-		pojo.id = cursor.getInt(0);
+		//pojo._id = cursor.getInt(0);
 		pojo.amount = cursor.getInt(1);
-		pojo.method = cursor.getString(2);
+		pojo.paymenttype = cursor.getString(2);
 		return pojo;
 	}
 
